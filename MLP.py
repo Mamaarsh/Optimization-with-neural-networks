@@ -1,7 +1,6 @@
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
-# رفع مشکل اجرای matplotlib در PyCharm
 import matplotlib
 matplotlib.use('TkAgg')
 
@@ -21,7 +20,6 @@ test_dataset = TensorDataset(torch.tensor(X_test), torch.tensor(y_test))
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
 
-# 3. تعریف مدل MLP
 class MLP(nn.Module):
     def __init__(self):
         super().__init__()
@@ -40,7 +38,6 @@ model = MLP()
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
-# 4. آموزش مدل
 epochs = 200
 losses = []
 accuracies = []
@@ -70,7 +67,6 @@ for epoch in range(epochs):
 
     print(f"Epoch {epoch+1}/{epochs} - Loss: {avg_loss:.4f} - Accuracy: {accuracy:.2f}%")
 
-# 5. ارزیابی روی داده تست
 model.eval()
 test_loss = 0
 correct = 0
@@ -88,7 +84,6 @@ with torch.no_grad():
 avg_test_loss = test_loss / len(test_loader)
 test_accuracy = 100 * correct / total
 
-# 6. مصور‌سازی دقیق مانند نمونه
 plt.figure(figsize=(12, 5))
 
 plt.subplot(1, 2, 1)
