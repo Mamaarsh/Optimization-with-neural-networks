@@ -85,7 +85,6 @@ conn = pymysql.connect(
 )
 cursor = conn.cursor()
 
-# 1. فقط یک بار ستون‌ها رو اضافه کن (چک نکنیم اگر هست یا نه برای سادگی):
 try:
     cursor.execute("""
     ALTER TABLE dataset
@@ -96,14 +95,11 @@ try:
     """)
     conn.commit()
 except:
-    # اگر ستون‌ها قبلاً اضافه شده باشن، خطا میده که نادیده می‌گیریمش
     pass
 
-# 2. گرفتن داده‌ها
 cursor.execute("SELECT proceses, arrival_time_1, arrival_time_2, arrival_time_3, arrival_time_4, burst_time_1, burst_time_2, burst_time_3, burst_time_4 FROM dataset")
 rows = cursor.fetchall()
 
-# 3. محاسبه و آپدیت
 for row in rows:
     proceses_id = row[0]
     arrivals = list(row[1:5])
@@ -128,7 +124,6 @@ for row in rows:
 
 conn.commit()
 
-# 4. آماده‌سازی داده‌ها برای شبکه
 X_data = []
 y_labels = []
 
