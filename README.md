@@ -31,5 +31,5 @@ If two algorithms FCFS and RR are minimized simultaneously, RR is considered as 
 
 If two algorithms SJF and RR are minimized simultaneously, SJF is considered as the label.
 
-
+-------------------------------------------------------------------------------------------
 Authors: Mohammad Javad Majlesi, Mohammad Arshia Jafari.
