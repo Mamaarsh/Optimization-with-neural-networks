@@ -24,8 +24,12 @@ In this project, only 3 classical scheduling algorithms are considered:
 
 ------------------------------------------------------------------------------------------
 After creating 9 columns for feature labels, add 3 more columns to show the Waiting Time of each algorithm for each instance. (The name of the algorithm with the lowest Waiting Time should be in the Label column).
+
 If two algorithms SJF and FCFS are minimized simultaneously, FCFS is considered as the label.
+
 If two algorithms FCFS and RR are minimized simultaneously, RR is considered as the label.
+
 If two algorithms SJF and RR are minimized simultaneously, SJF is considered as the label.
+
 
 Authors: Mohammad Javad Majlesi, Mohammad Arshia Jafari.
