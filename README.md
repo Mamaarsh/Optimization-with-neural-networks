@@ -7,13 +7,19 @@ The goal of this project is to design a neural network that predicts the operati
 # Project Description:
 In the first step, create a dataset containing 1200 samples (rows), each sample containing 8 input features. These features
 are:
+
 •4 arrival times for processes (P1taP4)
+
 •4 burst times for the same processes
+
 The goal of this data is to predict the best scheduling algorithm for each instance,
 so that the total waiting time in that instance is minimized.
 In this project, only 3 classical scheduling algorithms are considered:
+
 •FCFS (First Served)
+
 •SJF (Short Job First)
+
 •RR (Round Robin) with equal quantum 4
 ------------------------------------------------------------------------------------------
 After creating 9 columns for feature labels, add 3 more columns to show the Waiting Time of each algorithm for each instance. (The name of the algorithm with the lowest Waiting Time should be in the Label column).
