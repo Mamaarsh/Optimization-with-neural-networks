@@ -11,6 +11,3 @@ create table dataset(
 	Burst_time_3 int,
 	Burst_time_4 int
 );
-TRUNCATE TABLE dataset;
-
-select * from dataset;
