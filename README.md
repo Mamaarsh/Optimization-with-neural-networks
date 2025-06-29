@@ -72,7 +72,7 @@ To assign the final label (best algorithm):
 
 ![image](https://github.com/user-attachments/assets/94a959ae-84b9-4f20-a6b7-7523c1473a72)
 
-# output example:
+# Output example:
 
 ![image](https://github.com/user-attachments/assets/b96d4781-fcfc-49a7-9225-4f46c763a291)
 
