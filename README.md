@@ -2,13 +2,9 @@
 
 A machine learning project to optimize CPU scheduling by predicting the best algorithm for a given scenario using neural networks.
 
----
-
 ## Project Objective
 
 Design a neural network model that **predicts the most efficient scheduling algorithm** for a given set of process features. The aim is to **minimize total waiting time** for each instance using learned patterns in the data.
-
----
 
 ## 📄 Project Description
 
@@ -71,6 +67,10 @@ To assign the final label (best algorithm):
    - Visualize confusion matrix
 
 ---
+
+# Dataset example:
+
+![image](https://github.com/user-attachments/assets/94a959ae-84b9-4f20-a6b7-7523c1473a72)
 
 # output example:
 
