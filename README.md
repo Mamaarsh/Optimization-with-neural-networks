@@ -78,6 +78,3 @@ To assign the final label (best algorithm):
 
 ---
 Authors: Mohammad Javad Majlesi, Mohammad Arshia Jafari.
-
-## Contributors
-[![Contributors](https://contrib.rocks/image?repo=Mamaarsh/Optimization-with-neural-networks)](https://github.com/Mamaarsh/Optimization-with-neural-networks/graphs/contributors)
