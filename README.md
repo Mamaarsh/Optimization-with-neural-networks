@@ -74,7 +74,7 @@ To assign the final label (best algorithm):
 
 # Output example:
 
-![image](https://github.com/user-attachments/assets/b96d4781-fcfc-49a7-9225-4f46c763a291)
+![image](https://github.com/user-attachments/assets/cacd019d-d0d1-4661-8010-50f372c692c4)
 
 ---
 Authors: Mohammad Javad Majlesi, Mohammad Arshia Jafari.
