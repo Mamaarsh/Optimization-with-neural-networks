@@ -1,10 +1,12 @@
-# Sheduling Algorithm
-# FCFS , SJF , RR q = 4
+# Scheduling Algorithm Project
+# Algorithms: FCFS, SJF, RR (quantum = 4)
 # processes such as pnum and arrrival time and burst time
+
 import pymysql
 import numpy as np
+import pandas as pd
 
-# Alghorithm Fcfs
+# FCFS Algorithm
 def fcfs(processes):
     n = len(processes)
     waiting_times = [0] * n
@@ -17,7 +19,7 @@ def fcfs(processes):
         current_time += burst_time
     return waiting_times
 
-# Alghorithm SJF
+# SJF Algorithm
 def sjf(processes):
     n = len(processes)
     completed = 0
@@ -42,7 +44,7 @@ def sjf(processes):
         completed += 1
     return waiting_times
 
-# Alghorithm RR
+# RR Algorithm
 def rr(processes, quantum=4):
     n = len(processes)
     remaining_bursts = [burst for (arrival, burst) in processes]
@@ -124,17 +126,45 @@ for row in rows:
 
 conn.commit()
 
-X_data = []
-y_labels = []
-
 cursor.execute("SELECT arrival_time_1, arrival_time_2, arrival_time_3, arrival_time_4, burst_time_1, burst_time_2, burst_time_3, burst_time_4, label FROM dataset")
 rows = cursor.fetchall()
+
+X_data = []
+y_labels = []
 
 for row in rows:
     X_data.append(row[:8])
     y_labels.append(row[8])
 
-X = np.array(X_data, dtype=np.float32)
-y = np.array(y_labels, dtype=np.int64)
-
 conn.close()
+
+df = pd.DataFrame(X_data, columns=[
+    "arrival_time_1", "arrival_time_2", "arrival_time_3", "arrival_time_4",
+    "burst_time_1", "burst_time_2", "burst_time_3", "burst_time_4"
+])
+df["label"] = y_labels
+
+print("Original label distribution:")
+print(df["label"].value_counts())
+
+min_target = 300
+balanced_parts = []
+for label_id in df["label"].unique():
+    class_samples = df[df["label"] == label_id]
+    if len(class_samples) < min_target:
+        oversampled = class_samples.sample(n=min_target, replace=True, random_state=42)
+    else:
+        oversampled = class_samples.sample(n=min(min_target + 100, len(class_samples)), random_state=42)
+    balanced_parts.append(oversampled)
+
+balanced_df = pd.concat(balanced_parts).sample(frac=1, random_state=42).reset_index(drop=True)
+
+X = balanced_df[[
+    "arrival_time_1", "arrival_time_2", "arrival_time_3", "arrival_time_4",
+    "burst_time_1", "burst_time_2", "burst_time_3", "burst_time_4"
+]].values.astype(np.float32)
+
+y = balanced_df["label"].values.astype(np.int64)
+
+print("Balanced label distribution:")
+print(pd.Series(y).value_counts())
