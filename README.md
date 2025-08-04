@@ -1,35 +1,80 @@
-# Optimization-with-neural-networks.
-Scheduling optimization algorithms for operational systems with neural networks and machines learning
+# Optimization with Neural Networks: Scheduling Algorithm Predictor
 
-# Project Objective: 
-The goal of this project is to design a neural network that predicts the operating system using the features available in the data.
+A machine learning project to optimize CPU scheduling by predicting the best algorithm for a given scenario using neural networks.
 
-# Project Description:
-In the first step, create a dataset containing 1200 samples (rows), each sample containing 8 input features. These features
-are:
+## Project Objective
 
-•4 arrival times for processes (P1taP4)
+Design a neural network model that **predicts the most efficient scheduling algorithm** for a given set of process features. The aim is to **minimize total waiting time** for each instance using learned patterns in the data.
 
-•4 burst times for the same processes
+## 📄 Project Description
 
-The goal of this data is to predict the best scheduling algorithm for each instance,
-so that the total waiting time in that instance is minimized.
-In this project, only 3 classical scheduling algorithms are considered:
+### Problem
 
-•FCFS (First Served)
+Given the arrival and burst times of four processes, determine which of the following classical scheduling algorithms yields the **lowest total waiting time**:
 
-•SJF (Short Job First)
+- **FCFS** (First Come First Serve)
+- **SJF** (Shortest Job First)
+- **RR** (Round Robin) with a fixed quantum of 4
 
-•RR (Round Robin) with equal quantum 4
+### 🧾 Dataset Structure
 
-------------------------------------------------------------------------------------------
-After creating 9 columns for feature labels, add 3 more columns to show the Waiting Time of each algorithm for each instance. (The name of the algorithm with the lowest Waiting Time should be in the Label column).
+- **Samples:** 1200
+- **Features per sample:** 8
+  - **4 Arrival Times** → `P1ta`, `P2ta`, `P3ta`, `P4ta`
+  - **4 Burst Times** → `P1bt`, `P2bt`, `P3bt`, `P4bt`
+- **Additional columns per sample:**
+  - `FCFS_WT` → Total waiting time for FCFS
+  - `SJF_WT` → Total waiting time for SJF
+  - `RR_WT` → Total waiting time for RR
+  - `Label` → The name of the algorithm with the **minimum waiting time**
 
-If two algorithms SJF and FCFS are minimized simultaneously, FCFS is considered as the label.
+### 🏷️ Labeling Rule
 
-If two algorithms FCFS and RR are minimized simultaneously, RR is considered as the label.
+To assign the final label (best algorithm):
 
-If two algorithms SJF and RR are minimized simultaneously, SJF is considered as the label.
+1. If **SJF** and **FCFS** tie → choose `FCFS`
+2. If **FCFS** and **RR** tie → choose `RR`
+3. If **SJF** and **RR** tie → choose `SJF`
+4. Otherwise → choose the one with the smallest waiting time
 
--------------------------------------------------------------------------------------------
+---
+
+## 🛠️ Technologies Used
+
+- Python 3.x
+- NumPy, Pandas
+- PyTorch (for MLP Neural Network)
+- Scikit-learn (for preprocessing & metrics)
+- Matplotlib / Seaborn (for visualization)
+
+---
+
+## 🔄 Workflow
+
+1. **Dataset generation**:
+   - Randomly generate 1200 rows of arrival and burst times
+   - Simulate all 3 algorithms for each row
+   - Calculate waiting times and assign the correct label
+
+2. **Model design**:
+   - A Multi-Layer Perceptron (MLP) classifier
+   - Input: 8 normalized features
+   - Output: 3-class prediction (`FCFS`, `SJF`, or `RR`)
+
+3. **Training & Evaluation**:
+   - Split data into training/validation/test sets
+   - Evaluate accuracy, precision, recall
+   - Visualize confusion matrix
+
+---
+
+# Dataset example:
+
+![image](https://github.com/user-attachments/assets/94a959ae-84b9-4f20-a6b7-7523c1473a72)
+
+# Output example:
+
+![image](https://github.com/user-attachments/assets/cacd019d-d0d1-4661-8010-50f372c692c4)
+
+---
 Authors: Mohammad Javad Majlesi, Mohammad Arshia Jafari.
